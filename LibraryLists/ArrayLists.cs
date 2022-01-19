@@ -38,11 +38,6 @@ namespace ListsLibrary
         public ArrayList()
         {
             _array = new T[DefaultSize];
-
-            for (int i = 0; i < _array.Length; i++)
-            {
-                _array[i] = i;
-            }
         }
 
         public ArrayList(int capacity)
@@ -55,9 +50,9 @@ namespace ListsLibrary
             }
         }
 
-        public ArrayList(IEnumerable<T> array)
+        public ArrayList(IEnumerable<T> items)
         {
-            var sourceArray = array.ToArray();
+            var sourceArray = items.ToArray();
 
             _array = new T[(int)(DefaultSize + sourceArray.Length * Increment)];
 
