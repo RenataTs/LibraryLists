@@ -1,4 +1,4 @@
-﻿using LibraryLists;
+﻿using ListsLibrary;
 using System;
 using System.Collections.Generic;
 
@@ -8,17 +8,17 @@ namespace NewMyLists
     {
         static void Main(string[] args)
         {
-            ArrayList<string> array = new ArrayList<string>(new[] { "A", "B", "C" });
+            ArrayList<int> array = new ArrayList<int>(new[] { 1, 2, 3 });
             Console.WriteLine();
-            array.Add("D");
+            array.AddBy(2, 2);
             //array.RemoveAllItemsByValue("a");
             //Console.WriteLine(array.MinValueIndex());
             //array.Add(array);
 
             //array.AddFront(array);
-            array.Sort();
+            //array.Sort();
 
-            array.InsertByIndex(array, 5);
+            //array.InsertByIndex(array, 5);
             //array.AddFrontList(list);
             //array.AddListbyIndex(list, 2);
 

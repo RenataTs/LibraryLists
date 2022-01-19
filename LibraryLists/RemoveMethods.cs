@@ -2,11 +2,36 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibraryLists
+namespace ListsLibrary
 {
     public partial class ArrayList<T>
     {
-        public void LastNItemsDelete(int n)
+        public void RemoveLastItem()
+        {
+            RemoveBy(_currentCount);
+        }
+
+        public void RemoveFirstItem()
+        {
+            RemoveBy(0);
+        }
+
+        public void RemoveBy(int index)
+        {
+            if (index > Count || index < 0)
+            {
+                throw new IndexOutOfRangeException("Index should be greater or equal to zero and less than array length!");
+            }
+
+            for (int i = index; i < Count - 1; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+
+            --_currentCount;
+        }
+
+        public void LastNItemsRemove(int n)
         {
             for (int i = 0; i < n; i++)
             {
@@ -14,7 +39,7 @@ namespace LibraryLists
             }
         }
 
-        public void FirstNItemsDelete(int n)
+        public void FirstNItemsRemove(int n)
         {
             while (n > 0)
             {
@@ -28,8 +53,13 @@ namespace LibraryLists
             }
         }
 
-        public void NItemsDeleteByIndex(int n, int index)
+        public void NItemsDeleteBy(int n, int index)
         {
+            if (index > Count || index < 0)
+            {
+                throw new IndexOutOfRangeException("Index should be greater or equal to zero and less than array length!");
+            }
+
             while (n > 0)
             {
                 for (int i = index; i < Count - 1; i++)
@@ -42,26 +72,31 @@ namespace LibraryLists
             }
         }
 
-        public void RemoveItemByValue(T element)
+        public int RemoveItemByValue(T element)
         {
-            for (int i = 0; i < Count - 1; i++)
+            int j;
+            for (j = 0; j < Count - 1; j++)
             {
-                if (_array[i].CompareTo(element) == 0)
+                if (_array[j].CompareTo(element) == 0)
                 {
-                    for (; i < Count - 1; i++)
+                    for (int i = j; i < Count - 1; i++)
                     {
                         _array[i] = _array[i + 1];
-                        break;
                     }
+
+                    break;
                 }
             }
 
             --_currentCount;
+
+            return j;
         }
 
-        public void RemoveAllItemsByValue(T element)
+        public int RemoveAllItemsByValue(T element)
         {
             int i = 0;
+            int count = 0;
 
             while (i < Count)
             {
@@ -74,6 +109,7 @@ namespace LibraryLists
 
                     ++i;
                     i = Math.Max(0, i - 1);
+                    ++count;
                     --_currentCount;
                 }
                 else
@@ -81,6 +117,8 @@ namespace LibraryLists
                     ++i;
                 }
             }
+
+            return count;
         }
     }
 }
