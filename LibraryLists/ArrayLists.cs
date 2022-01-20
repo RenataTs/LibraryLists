@@ -8,8 +8,9 @@ namespace ListsLibrary
 {
     public partial class ArrayList<T>
         : IList<T>,
-            IEquatable<IList<T>> where T : IComparable<T>
+            IEquatable<IList<T>> where T : IComparable<T>, new()
     {
+        private const int DefaltItem = 1;
         private const int DefaultSize = 4;
         private const double Increment = 1.33;
         private int _currentCount;
@@ -38,16 +39,17 @@ namespace ListsLibrary
         public ArrayList()
         {
             _array = new T[DefaultSize];
+
+            _array[0] = (T)(object)DefaltItem;
+            ++_currentCount;
         }
 
-        public ArrayList(int capacity)
+        public ArrayList(T element)
         {
-            _array = new T[capacity];
+            _array = new T[DefaultSize];
 
-            for (int i = 0; i < _array.Length; i++)
-            {
-                _array[i] = _array[i];
-            }
+            _array[0] = element;
+            ++_currentCount;
         }
 
         public ArrayList(IEnumerable<T> items)
@@ -99,17 +101,13 @@ namespace ListsLibrary
 
         public int IndexByItem(T element)
         {
-            if (Count == Capacity)
-            {
-                Resize(DefaultNewSize);
-            }
+            int i = -1;
 
-            int i = 0;
-
-            for (; i < Count; i++)
+            for (int j = 0; j < Count; j++)
             {
-                if (_array[i].CompareTo(element) == 0)
+                if (_array[j].CompareTo(element) == 0)
                 {
+                    i = j;
                     break;
                 }
             }

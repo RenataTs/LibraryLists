@@ -8,8 +8,6 @@ namespace ListsTests
     [TestFixture(typeof(ArrayList<int>))]
     public partial class Tests<T>
     {
-        [Test]
-
         [TestCase(new[] { 1, 2, 3 }, 3)]
         [TestCase(new[] { 4, 3, 9, 3, 2 }, 9)]
         [TestCase(new[] { 5, 4, 3, 2, 1 }, 5)]

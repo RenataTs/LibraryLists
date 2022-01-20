@@ -46,6 +46,7 @@ namespace ListsTests
         [TestCase(new[] { 4, 3, 9, 3, 2 }, 3, 1)]
         [TestCase(new[] { 4, 2, 4, 2, 7 }, 7, 4)]
         [TestCase(new[] { 2, 4, 6, 1, 3 }, 2, 0)]
+        [TestCase(new[] { 2, 4, 6, 1, 3 }, 10, -1)]
         public void IndexByItem_WhenArrayPassed_ShouldReturnIndexByItem
             (int[] sourceArray, int item, int expectedItemIndex)
         {
